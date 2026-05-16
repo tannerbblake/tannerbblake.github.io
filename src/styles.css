@@ -132,11 +132,11 @@ html.light .theme-toggle-show-light-mode {
 
   html {
     scroll-behavior: smooth;
-    color-scheme: dark;
+    color-scheme: light;
   }
 
-  html.light {
-    color-scheme: light;
+  html:not(.light) {
+    color-scheme: dark;
   }
 
   body {

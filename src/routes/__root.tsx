@@ -4,8 +4,8 @@ import { Toaster } from "@/components/ui/sonner";
 
 import appCss from "../styles.css?url";
 
-/** Runs before stylesheet so first paint matches localStorage theme (avoid dark flash when light selected). Must stay in sync with ThemeToggle.tsx key/value. */
-const THEME_INIT_SCRIPT = `(function(){try{var k='theme';if(localStorage.getItem(k)==='light')document.documentElement.classList.add('light')}catch(e){}})();`;
+/** Runs before stylesheet so first paint matches localStorage theme. Must stay in sync with ThemeToggle.tsx key/value. */
+const THEME_INIT_SCRIPT = `(function(){try{var k='theme',r=document.documentElement;if(localStorage.getItem(k)==='dark')r.classList.remove('light');else r.classList.add('light')}catch(e){}})();`;
 
 function NotFoundComponent() {
   return (
@@ -75,7 +75,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className="light">
       <head>
         {/* Before HeadContent/CSS so synchronous theme avoids FOUC */}
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
