@@ -3,7 +3,7 @@ import { Apple, Play } from "lucide-react";
 import logoDark from "@/assets/logo-dark.png";
 import logoLight from "@/assets/logo-light.png";
 
-export const Route = createFileRoute("/fluentspeak/")({
+export const Route = createFileRoute("/_site/fluentspeak")({
   head: () => ({
     meta: [
       { title: "FluentSpeak - Home" },

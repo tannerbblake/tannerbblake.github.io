@@ -7,10 +7,10 @@ import logoLight from "@/assets/logo-light.png";
 
 const links = [
   { to: "/fluentspeak", label: "Home" },
-  { to: "/fluentspeak/about", label: "About" },
-  { to: "/fluentspeak/contact", label: "Contact" },
-  { to: "/fluentspeak/privacy", label: "Privacy" },
-  { to: "/fluentspeak/terms", label: "Terms" },
+  { to: "/about", label: "About" },
+  { to: "/contact", label: "Contact" },
+  { to: "/privacy", label: "Privacy" },
+  { to: "/terms", label: "Terms" },
 ] as const;
 
 export function SiteHeader() {

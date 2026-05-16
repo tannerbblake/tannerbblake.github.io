@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/fluentspeak/privacy")({
+export const Route = createFileRoute("/_site/privacy")({
   head: () => ({
     meta: [
       { title: "Privacy Policy — FluentSpeak" },

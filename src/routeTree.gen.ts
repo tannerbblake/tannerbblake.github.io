@@ -9,17 +9,16 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as FluentspeakRouteRouteImport } from './routes/fluentspeak/route'
+import { Route as SiteRouteRouteImport } from './routes/_site/route'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as FluentspeakIndexRouteImport } from './routes/fluentspeak/index'
-import { Route as FluentspeakTermsRouteImport } from './routes/fluentspeak/terms'
-import { Route as FluentspeakPrivacyRouteImport } from './routes/fluentspeak/privacy'
-import { Route as FluentspeakContactRouteImport } from './routes/fluentspeak/contact'
-import { Route as FluentspeakAboutRouteImport } from './routes/fluentspeak/about'
+import { Route as SiteTermsRouteImport } from './routes/_site/terms'
+import { Route as SitePrivacyRouteImport } from './routes/_site/privacy'
+import { Route as SiteFluentspeakRouteImport } from './routes/_site/fluentspeak'
+import { Route as SiteContactRouteImport } from './routes/_site/contact'
+import { Route as SiteAboutRouteImport } from './routes/_site/about'
 
-const FluentspeakRouteRoute = FluentspeakRouteRouteImport.update({
-  id: '/fluentspeak',
-  path: '/fluentspeak',
+const SiteRouteRoute = SiteRouteRouteImport.update({
+  id: '/_site',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -27,100 +26,92 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const FluentspeakIndexRoute = FluentspeakIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => FluentspeakRouteRoute,
-} as any)
-const FluentspeakTermsRoute = FluentspeakTermsRouteImport.update({
+const SiteTermsRoute = SiteTermsRouteImport.update({
   id: '/terms',
   path: '/terms',
-  getParentRoute: () => FluentspeakRouteRoute,
+  getParentRoute: () => SiteRouteRoute,
 } as any)
-const FluentspeakPrivacyRoute = FluentspeakPrivacyRouteImport.update({
+const SitePrivacyRoute = SitePrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
-  getParentRoute: () => FluentspeakRouteRoute,
+  getParentRoute: () => SiteRouteRoute,
 } as any)
-const FluentspeakContactRoute = FluentspeakContactRouteImport.update({
+const SiteFluentspeakRoute = SiteFluentspeakRouteImport.update({
+  id: '/fluentspeak',
+  path: '/fluentspeak',
+  getParentRoute: () => SiteRouteRoute,
+} as any)
+const SiteContactRoute = SiteContactRouteImport.update({
   id: '/contact',
   path: '/contact',
-  getParentRoute: () => FluentspeakRouteRoute,
+  getParentRoute: () => SiteRouteRoute,
 } as any)
-const FluentspeakAboutRoute = FluentspeakAboutRouteImport.update({
+const SiteAboutRoute = SiteAboutRouteImport.update({
   id: '/about',
   path: '/about',
-  getParentRoute: () => FluentspeakRouteRoute,
+  getParentRoute: () => SiteRouteRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/fluentspeak': typeof FluentspeakRouteRouteWithChildren
-  '/fluentspeak/about': typeof FluentspeakAboutRoute
-  '/fluentspeak/contact': typeof FluentspeakContactRoute
-  '/fluentspeak/privacy': typeof FluentspeakPrivacyRoute
-  '/fluentspeak/terms': typeof FluentspeakTermsRoute
-  '/fluentspeak/': typeof FluentspeakIndexRoute
+  '/about': typeof SiteAboutRoute
+  '/contact': typeof SiteContactRoute
+  '/fluentspeak': typeof SiteFluentspeakRoute
+  '/privacy': typeof SitePrivacyRoute
+  '/terms': typeof SiteTermsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/fluentspeak/about': typeof FluentspeakAboutRoute
-  '/fluentspeak/contact': typeof FluentspeakContactRoute
-  '/fluentspeak/privacy': typeof FluentspeakPrivacyRoute
-  '/fluentspeak/terms': typeof FluentspeakTermsRoute
-  '/fluentspeak': typeof FluentspeakIndexRoute
+  '/about': typeof SiteAboutRoute
+  '/contact': typeof SiteContactRoute
+  '/fluentspeak': typeof SiteFluentspeakRoute
+  '/privacy': typeof SitePrivacyRoute
+  '/terms': typeof SiteTermsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/fluentspeak': typeof FluentspeakRouteRouteWithChildren
-  '/fluentspeak/about': typeof FluentspeakAboutRoute
-  '/fluentspeak/contact': typeof FluentspeakContactRoute
-  '/fluentspeak/privacy': typeof FluentspeakPrivacyRoute
-  '/fluentspeak/terms': typeof FluentspeakTermsRoute
-  '/fluentspeak/': typeof FluentspeakIndexRoute
+  '/_site': typeof SiteRouteRouteWithChildren
+  '/_site/about': typeof SiteAboutRoute
+  '/_site/contact': typeof SiteContactRoute
+  '/_site/fluentspeak': typeof SiteFluentspeakRoute
+  '/_site/privacy': typeof SitePrivacyRoute
+  '/_site/terms': typeof SiteTermsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/about'
+    | '/contact'
     | '/fluentspeak'
-    | '/fluentspeak/about'
-    | '/fluentspeak/contact'
-    | '/fluentspeak/privacy'
-    | '/fluentspeak/terms'
-    | '/fluentspeak/'
+    | '/privacy'
+    | '/terms'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/fluentspeak/about'
-    | '/fluentspeak/contact'
-    | '/fluentspeak/privacy'
-    | '/fluentspeak/terms'
-    | '/fluentspeak'
+  to: '/' | '/about' | '/contact' | '/fluentspeak' | '/privacy' | '/terms'
   id:
     | '__root__'
     | '/'
-    | '/fluentspeak'
-    | '/fluentspeak/about'
-    | '/fluentspeak/contact'
-    | '/fluentspeak/privacy'
-    | '/fluentspeak/terms'
-    | '/fluentspeak/'
+    | '/_site'
+    | '/_site/about'
+    | '/_site/contact'
+    | '/_site/fluentspeak'
+    | '/_site/privacy'
+    | '/_site/terms'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  FluentspeakRouteRoute: typeof FluentspeakRouteRouteWithChildren
+  SiteRouteRoute: typeof SiteRouteRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/fluentspeak': {
-      id: '/fluentspeak'
-      path: '/fluentspeak'
-      fullPath: '/fluentspeak'
-      preLoaderRoute: typeof FluentspeakRouteRouteImport
+    '/_site': {
+      id: '/_site'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof SiteRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -130,66 +121,67 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/fluentspeak/': {
-      id: '/fluentspeak/'
-      path: '/'
-      fullPath: '/fluentspeak/'
-      preLoaderRoute: typeof FluentspeakIndexRouteImport
-      parentRoute: typeof FluentspeakRouteRoute
-    }
-    '/fluentspeak/terms': {
-      id: '/fluentspeak/terms'
+    '/_site/terms': {
+      id: '/_site/terms'
       path: '/terms'
-      fullPath: '/fluentspeak/terms'
-      preLoaderRoute: typeof FluentspeakTermsRouteImport
-      parentRoute: typeof FluentspeakRouteRoute
+      fullPath: '/terms'
+      preLoaderRoute: typeof SiteTermsRouteImport
+      parentRoute: typeof SiteRouteRoute
     }
-    '/fluentspeak/privacy': {
-      id: '/fluentspeak/privacy'
+    '/_site/privacy': {
+      id: '/_site/privacy'
       path: '/privacy'
-      fullPath: '/fluentspeak/privacy'
-      preLoaderRoute: typeof FluentspeakPrivacyRouteImport
-      parentRoute: typeof FluentspeakRouteRoute
+      fullPath: '/privacy'
+      preLoaderRoute: typeof SitePrivacyRouteImport
+      parentRoute: typeof SiteRouteRoute
     }
-    '/fluentspeak/contact': {
-      id: '/fluentspeak/contact'
+    '/_site/fluentspeak': {
+      id: '/_site/fluentspeak'
+      path: '/fluentspeak'
+      fullPath: '/fluentspeak'
+      preLoaderRoute: typeof SiteFluentspeakRouteImport
+      parentRoute: typeof SiteRouteRoute
+    }
+    '/_site/contact': {
+      id: '/_site/contact'
       path: '/contact'
-      fullPath: '/fluentspeak/contact'
-      preLoaderRoute: typeof FluentspeakContactRouteImport
-      parentRoute: typeof FluentspeakRouteRoute
+      fullPath: '/contact'
+      preLoaderRoute: typeof SiteContactRouteImport
+      parentRoute: typeof SiteRouteRoute
     }
-    '/fluentspeak/about': {
-      id: '/fluentspeak/about'
+    '/_site/about': {
+      id: '/_site/about'
       path: '/about'
-      fullPath: '/fluentspeak/about'
-      preLoaderRoute: typeof FluentspeakAboutRouteImport
-      parentRoute: typeof FluentspeakRouteRoute
+      fullPath: '/about'
+      preLoaderRoute: typeof SiteAboutRouteImport
+      parentRoute: typeof SiteRouteRoute
     }
   }
 }
 
-interface FluentspeakRouteRouteChildren {
-  FluentspeakAboutRoute: typeof FluentspeakAboutRoute
-  FluentspeakContactRoute: typeof FluentspeakContactRoute
-  FluentspeakPrivacyRoute: typeof FluentspeakPrivacyRoute
-  FluentspeakTermsRoute: typeof FluentspeakTermsRoute
-  FluentspeakIndexRoute: typeof FluentspeakIndexRoute
+interface SiteRouteRouteChildren {
+  SiteAboutRoute: typeof SiteAboutRoute
+  SiteContactRoute: typeof SiteContactRoute
+  SiteFluentspeakRoute: typeof SiteFluentspeakRoute
+  SitePrivacyRoute: typeof SitePrivacyRoute
+  SiteTermsRoute: typeof SiteTermsRoute
 }
 
-const FluentspeakRouteRouteChildren: FluentspeakRouteRouteChildren = {
-  FluentspeakAboutRoute: FluentspeakAboutRoute,
-  FluentspeakContactRoute: FluentspeakContactRoute,
-  FluentspeakPrivacyRoute: FluentspeakPrivacyRoute,
-  FluentspeakTermsRoute: FluentspeakTermsRoute,
-  FluentspeakIndexRoute: FluentspeakIndexRoute,
+const SiteRouteRouteChildren: SiteRouteRouteChildren = {
+  SiteAboutRoute: SiteAboutRoute,
+  SiteContactRoute: SiteContactRoute,
+  SiteFluentspeakRoute: SiteFluentspeakRoute,
+  SitePrivacyRoute: SitePrivacyRoute,
+  SiteTermsRoute: SiteTermsRoute,
 }
 
-const FluentspeakRouteRouteWithChildren =
-  FluentspeakRouteRoute._addFileChildren(FluentspeakRouteRouteChildren)
+const SiteRouteRouteWithChildren = SiteRouteRoute._addFileChildren(
+  SiteRouteRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  FluentspeakRouteRoute: FluentspeakRouteRouteWithChildren,
+  SiteRouteRoute: SiteRouteRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

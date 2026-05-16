@@ -4,7 +4,7 @@ import { z } from "zod";
 import { toast } from "sonner";
 import { Mail } from "lucide-react";
 
-export const Route = createFileRoute("/fluentspeak/contact")({
+export const Route = createFileRoute("/_site/contact")({
   head: () => ({
     meta: [
       { title: "Contact — FluentSpeak" },
