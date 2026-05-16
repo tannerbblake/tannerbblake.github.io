@@ -2,7 +2,7 @@ import { createFileRoute, Outlet } from "@tanstack/react-router";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 
-export const Route = createFileRoute("/_site")({
+export const Route = createFileRoute("/fluentspeak")({
   component: FluentSpeakLayout,
 });
 

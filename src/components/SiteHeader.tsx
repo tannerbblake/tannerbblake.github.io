@@ -6,11 +6,11 @@ import logoDark from "@/assets/logo-dark.png";
 import logoLight from "@/assets/logo-light.png";
 
 const links = [
-  { to: "/", label: "Home" },
-  { to: "/about", label: "About" },
-  { to: "/contact", label: "Contact" },
-  { to: "/privacy", label: "Privacy" },
-  { to: "/terms", label: "Terms" },
+  { to: "/fluentspeak", label: "Home" },
+  { to: "/fluentspeak/about", label: "About" },
+  { to: "/fluentspeak/contact", label: "Contact" },
+  { to: "/fluentspeak/privacy", label: "Privacy" },
+  { to: "/fluentspeak/terms", label: "Terms" },
 ] as const;
 
 export function SiteHeader() {
@@ -19,7 +19,7 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-border/60 bg-background/70 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
-        <Link to="/" className="flex items-center gap-2 font-display text-lg font-semibold tracking-tight">
+        <Link to="/fluentspeak" className="flex items-center gap-2 font-display text-lg font-semibold tracking-tight">
           <span
             role="img"
             aria-label="FluentSpeak logo"

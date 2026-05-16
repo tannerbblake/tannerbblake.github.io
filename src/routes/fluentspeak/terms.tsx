@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/_site/terms")({
+export const Route = createFileRoute("/fluentspeak/terms")({
   head: () => ({
     meta: [
       { title: "Terms of Service — FluentSpeak" },
@@ -47,7 +47,7 @@ function Terms() {
         <p>
           <strong className="text-foreground">Please read these Terms carefully.</strong> By
           downloading, installing, accessing, or using the App, you agree to these Terms and to our{" "}
-          <Link to="/privacy" className="text-foreground underline">
+          <Link to="/fluentspeak/privacy" className="text-foreground underline">
             Privacy Policy.
           </Link>{" "}
           If you do not agree, do not use the App.
@@ -376,7 +376,7 @@ function Terms() {
           <p className="mt-3">
             You may delete stored conversation history through in-App settings where available. Deletion
             may not remove all copies immediately from backups. To request broader deletion, see our{" "}
-            <Link to="/privacy" className="text-foreground underline">
+            <Link to="/fluentspeak/privacy" className="text-foreground underline">
               Privacy Policy
             </Link>{" "}
             or contact fluentspeak.contact@gmail.com.
@@ -465,7 +465,7 @@ function Terms() {
           <h2 className="text-2xl font-semibold text-foreground">13. Privacy</h2>
           <p className="mt-3">
             Our collection and use of personal information is described in our{" "}
-            <Link to="/privacy" className="text-foreground underline">
+            <Link to="/fluentspeak/privacy" className="text-foreground underline">
               Privacy Policy,
             </Link>{" "}
             which is incorporated into these Terms by reference.

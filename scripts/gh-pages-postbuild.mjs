@@ -1,16 +1,21 @@
 /**
- * GitHub Pages SPA fallback: serve index.html for unknown paths so client routing works.
+ * GitHub Pages post-build: SPA fallback + disable Jekyll on user/org sites.
  */
-import { copyFileSync, existsSync } from "node:fs";
+import { copyFileSync, existsSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
 const outDir = join(process.cwd(), "dist", "client");
-const indexHtml = join(outDir, "index.html");
+const appIndex = join(outDir, "fluentspeak", "index.html");
 
-if (!existsSync(indexHtml)) {
-  console.error("gh-pages-postbuild: dist/client/index.html not found. Enable prerender in vite.config.ts.");
+if (!existsSync(appIndex)) {
+  console.error("gh-pages-postbuild: dist/client/fluentspeak/index.html not found. Run build:gh-pages.");
   process.exit(1);
 }
 
-copyFileSync(indexHtml, join(outDir, "404.html"));
-console.log("gh-pages-postbuild: wrote dist/client/404.html");
+// SPA fallback: serve the FluentSpeak shell so client routing can handle deep links
+copyFileSync(appIndex, join(outDir, "404.html"));
+
+// Required when deploying folders starting with _ (and general GH Pages static hosting)
+writeFileSync(join(outDir, ".nojekyll"), "");
+
+console.log("gh-pages-postbuild: wrote 404.html and .nojekyll");

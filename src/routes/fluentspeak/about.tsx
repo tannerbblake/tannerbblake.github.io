@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Mail } from "lucide-react";
 
-export const Route = createFileRoute("/_site/about")({
+export const Route = createFileRoute("/fluentspeak/about")({
   head: () => ({
     meta: [
       { title: "About — FluentSpeak" },
