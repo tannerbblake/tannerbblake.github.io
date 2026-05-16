@@ -24,8 +24,8 @@ export default defineConfig({
             autoStaticPathsDiscovery: true,
             crawlLinks: true,
             failOnError: true,
-            filter: ({ path }) =>
-              !/^\/fluentspeak\/(about|contact|privacy|terms|fluentspeak)/.test(path),
+            // Crawl can pick up /fluentspeak/* hrefs (vite base prefix); real pages are /, /about, …
+            filter: ({ path }) => !/^\/fluentspeak\//.test(path),
           },
         }
       : {}),

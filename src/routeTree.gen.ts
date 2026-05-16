@@ -9,22 +9,27 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as HelloRouteImport } from './routes/hello'
 import { Route as SiteRouteRouteImport } from './routes/_site/route'
-import { Route as IndexRouteImport } from './routes/index'
+import { Route as SiteIndexRouteImport } from './routes/_site/index'
 import { Route as SiteTermsRouteImport } from './routes/_site/terms'
 import { Route as SitePrivacyRouteImport } from './routes/_site/privacy'
-import { Route as SiteFluentspeakRouteImport } from './routes/_site/fluentspeak'
 import { Route as SiteContactRouteImport } from './routes/_site/contact'
 import { Route as SiteAboutRouteImport } from './routes/_site/about'
 
+const HelloRoute = HelloRouteImport.update({
+  id: '/hello',
+  path: '/hello',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SiteRouteRoute = SiteRouteRouteImport.update({
   id: '/_site',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
+const SiteIndexRoute = SiteIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => SiteRouteRoute,
 } as any)
 const SiteTermsRoute = SiteTermsRouteImport.update({
   id: '/terms',
@@ -34,11 +39,6 @@ const SiteTermsRoute = SiteTermsRouteImport.update({
 const SitePrivacyRoute = SitePrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
-  getParentRoute: () => SiteRouteRoute,
-} as any)
-const SiteFluentspeakRoute = SiteFluentspeakRouteImport.update({
-  id: '/fluentspeak',
-  path: '/fluentspeak',
   getParentRoute: () => SiteRouteRoute,
 } as any)
 const SiteContactRoute = SiteContactRouteImport.update({
@@ -53,60 +53,61 @@ const SiteAboutRoute = SiteAboutRouteImport.update({
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
+  '/': typeof SiteIndexRoute
+  '/hello': typeof HelloRoute
   '/about': typeof SiteAboutRoute
   '/contact': typeof SiteContactRoute
-  '/fluentspeak': typeof SiteFluentspeakRoute
   '/privacy': typeof SitePrivacyRoute
   '/terms': typeof SiteTermsRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
+  '/hello': typeof HelloRoute
   '/about': typeof SiteAboutRoute
   '/contact': typeof SiteContactRoute
-  '/fluentspeak': typeof SiteFluentspeakRoute
   '/privacy': typeof SitePrivacyRoute
   '/terms': typeof SiteTermsRoute
+  '/': typeof SiteIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
   '/_site': typeof SiteRouteRouteWithChildren
+  '/hello': typeof HelloRoute
   '/_site/about': typeof SiteAboutRoute
   '/_site/contact': typeof SiteContactRoute
-  '/_site/fluentspeak': typeof SiteFluentspeakRoute
   '/_site/privacy': typeof SitePrivacyRoute
   '/_site/terms': typeof SiteTermsRoute
+  '/_site/': typeof SiteIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/about'
-    | '/contact'
-    | '/fluentspeak'
-    | '/privacy'
-    | '/terms'
+  fullPaths: '/' | '/hello' | '/about' | '/contact' | '/privacy' | '/terms'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/contact' | '/fluentspeak' | '/privacy' | '/terms'
+  to: '/hello' | '/about' | '/contact' | '/privacy' | '/terms' | '/'
   id:
     | '__root__'
-    | '/'
     | '/_site'
+    | '/hello'
     | '/_site/about'
     | '/_site/contact'
-    | '/_site/fluentspeak'
     | '/_site/privacy'
     | '/_site/terms'
+    | '/_site/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
   SiteRouteRoute: typeof SiteRouteRouteWithChildren
+  HelloRoute: typeof HelloRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/hello': {
+      id: '/hello'
+      path: '/hello'
+      fullPath: '/hello'
+      preLoaderRoute: typeof HelloRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_site': {
       id: '/_site'
       path: ''
@@ -114,12 +115,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SiteRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
+    '/_site/': {
+      id: '/_site/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof SiteIndexRouteImport
+      parentRoute: typeof SiteRouteRoute
     }
     '/_site/terms': {
       id: '/_site/terms'
@@ -133,13 +134,6 @@ declare module '@tanstack/react-router' {
       path: '/privacy'
       fullPath: '/privacy'
       preLoaderRoute: typeof SitePrivacyRouteImport
-      parentRoute: typeof SiteRouteRoute
-    }
-    '/_site/fluentspeak': {
-      id: '/_site/fluentspeak'
-      path: '/fluentspeak'
-      fullPath: '/fluentspeak'
-      preLoaderRoute: typeof SiteFluentspeakRouteImport
       parentRoute: typeof SiteRouteRoute
     }
     '/_site/contact': {
@@ -162,17 +156,17 @@ declare module '@tanstack/react-router' {
 interface SiteRouteRouteChildren {
   SiteAboutRoute: typeof SiteAboutRoute
   SiteContactRoute: typeof SiteContactRoute
-  SiteFluentspeakRoute: typeof SiteFluentspeakRoute
   SitePrivacyRoute: typeof SitePrivacyRoute
   SiteTermsRoute: typeof SiteTermsRoute
+  SiteIndexRoute: typeof SiteIndexRoute
 }
 
 const SiteRouteRouteChildren: SiteRouteRouteChildren = {
   SiteAboutRoute: SiteAboutRoute,
   SiteContactRoute: SiteContactRoute,
-  SiteFluentspeakRoute: SiteFluentspeakRoute,
   SitePrivacyRoute: SitePrivacyRoute,
   SiteTermsRoute: SiteTermsRoute,
+  SiteIndexRoute: SiteIndexRoute,
 }
 
 const SiteRouteRouteWithChildren = SiteRouteRoute._addFileChildren(
@@ -180,8 +174,8 @@ const SiteRouteRouteWithChildren = SiteRouteRoute._addFileChildren(
 )
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
   SiteRouteRoute: SiteRouteRouteWithChildren,
+  HelloRoute: HelloRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
