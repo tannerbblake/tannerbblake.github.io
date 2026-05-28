@@ -28,8 +28,11 @@ jobs:
       - run: npm ci
       - run: npm run build:gh-pages
       - run: test -f dist/client/fluentspeak/index.html
+<<<<<<< HEAD
       - run: test -f dist/client/fluentspeak/app-ads.txt
       - run: grep -q 'pub-8055879971747825' dist/client/fluentspeak/app-ads.txt
+=======
+>>>>>>> 02b5680cda15a83236cd67a7685c3069b80fff52
 
       - uses: actions/upload-pages-artifact@v3
         with:
