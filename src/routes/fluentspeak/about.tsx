@@ -23,7 +23,7 @@ function About() {
           Most traditional language learning apps optimize for user retention instead of teaching real langauge skills, resulting in apps that drive the feeling of accomplishment while minimizing the friction necesary to learn a language.
         </p>
         <p>
-          By providing real conversational exposure, FluentSpeak allows you to develop true conversational fluency in a simple and straightforward way that other apps don't. Download FluentSpeak now for free on the App Store or Google Play Store.
+          By providing real conversational exposure, FluentSpeak allows you to develop true conversational fluency in a simple and straightforward way that other apps don't. Download FluentSpeak now for free on the App Store.
         </p>
         <p>
           Made by Tanner Blake :)

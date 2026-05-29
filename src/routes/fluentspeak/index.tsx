@@ -1,7 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Apple, Play } from "lucide-react";
+import { Apple } from "lucide-react";
 import logoDark from "@/assets/logo-dark.png";
 import logoLight from "@/assets/logo-light.png";
+
+const APP_STORE_URL =
+  "https://apps.apple.com/us/app/fluentspeak-ai-language-coach/id6760570626";
 
 export const Route = createFileRoute("/fluentspeak/")({
   head: () => ({
@@ -10,7 +13,7 @@ export const Route = createFileRoute("/fluentspeak/")({
       {
         name: "description",
         content:
-          "The iOS app that helps you become fluent through immersive AI-powered conversations. Download on the App Store and Google Play.",
+          "The iOS app that helps you become fluent through immersive AI-powered conversations. Download on the App Store.",
       },
     ],
   }),
@@ -49,25 +52,17 @@ function Home() {
           conversational fluency in a language.
         </p>
 
-        <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">
+        <div className="mt-10 flex items-center justify-center">
           <a
-            href="#"
+            href={APP_STORE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="group inline-flex items-center gap-3 rounded-xl bg-foreground px-6 py-3.5 text-background shadow-[var(--shadow-glow)] motion-safe:transition-colors motion-safe:duration-150 hover:bg-foreground/80 hover:shadow-[var(--shadow-elevated)]"
           >
             <Apple size={22} />
             <div className="text-left leading-tight">
               <div className="text-[10px] uppercase tracking-wider opacity-70">Download on the</div>
               <div className="font-semibold">App Store</div>
-            </div>
-          </a>
-          <a
-            href="#"
-            className="inline-flex items-center gap-3 rounded-xl border border-border bg-surface px-6 py-3.5 text-foreground motion-safe:transition-colors motion-safe:duration-150 hover:bg-accent"
-          >
-            <Play size={22} />
-            <div className="text-left leading-tight">
-              <div className="text-[10px] uppercase tracking-wider opacity-70">Get it on</div>
-              <div className="font-semibold">Google Play</div>
             </div>
           </a>
         </div>
